@@ -2,31 +2,72 @@
 
 You know that friend who'll tell you your outfit looks bad before you leave the house? That's Blunt Cake, but for your code.
 
-**4 modes. Real findings. No fluff.**
+**8 modes. 6 personalities. Custom voice creator. Coding challenges. Auto-fix. CI/CD. And it roasts itself to stay sharp.**
 
-**🔥 Standard** — fast single-pass. Finds the issues, delivers them straight, gives you the fix. Done.
+## Modes
 
-**👨‍🍳 Panel** — 4 specialist agents tear through your code in parallel (security, performance, architecture, style). A coordinator deduplicates and cross-confirms. If 3 out of 4 specialists independently flag the same thing, you should probably fix it.
+**🔥 Standard** — fast single-pass. Finds the issues, delivers them straight, gives you the fix.
 
-**🎯 Skill Review** — feed it a SKILL.md and it tells you what's missing, what's vague, and what'll break. 8 categories from trigger design to eval-readiness.
+**👨‍🍳 Panel** — 4 specialist agents tear through your code in parallel (security, performance, architecture, style). Cross-confirmed findings are the real ones.
 
-**📊 Eval** — dead serious. Generates assertions, grades each PASS/FAIL with evidence, scores 5 quality dimensions, gives you a letter grade. The final verdict is the only part that roasts you.
+**📝 Diff Roast** — roast your git diff before you commit. Only judges what you changed.
 
-## It tested itself to 100%
-Ships with a self-improving eval loop. Ran its own tests, read its failures, rewrote its own instructions, re-tested. 93% → 100% in 4 iterations. Then we Panel Roasted our own production MCP server with it and fixed all 16 findings the same night.
+**🆚 Batter Battle** — two files enter, one leaves. 5-round head-to-head with a declared winner.
+
+**🏫 Roast-a-thon** — roast an entire project directory. File-by-file scores, project GPA, valedictorian and dropout callouts.
+
+**🎯 Skill Roast** — feed it a SKILL.md and it tells you what's missing. 8 categories from trigger design to eval-readiness.
+
+**📊 Eval** — dead serious. Assertions, PASS/FAIL grades, 5 quality dimensions, letter grade. Comedy only in the final verdict.
+
+**🎯🔥 Roast Challenge** — coding katas judged by Blunt Cake. 5 built-in challenges with target scores to beat. Community challenges welcome.
+
+## Personalities
+
+Pick a voice for your roast. Same findings, different delivery.
+
+🧑‍🍳 **Chef** — celebrity chef energy, kitchen metaphors
+👵 **Disappointed Grandma** — not mad, just disappointed
+😐 **Passive-Aggressive PR Reviewer** — "Interesting choice 🙂"
+🎤 **Simon Cowell** — withering pauses, grudging respect
+🐕 **Snoop Dogg** — chill but devastating, fo real
+🏴‍☠️ **Pirate** — nautical metaphors, walk the plank for CRITICALs
+🎨 **Custom** — describe any voice and Blunt Cake generates the personality. Save it, reuse it.
+
+## It fixes what it finds
+
+After any roast, Auto-Fix offers to apply the fixes — all at once, critical only, or pick individually. Then offers a re-roast to check your new score.
+
+## CI/CD
+
+Drop the GitHub Action in your repo. Every PR gets a Diff Roast posted as a comment. Configurable mode and personality.
+
+## Eval-verified
 
 ```
-Assertion pass rate:  100%
-Accuracy:             4.7/5
-Humor:                5.0/5
-Actionability:        5.0/5
+9 test cases, 82 assertions
+Pass rate:        86% (97% excluding headless-only mode)
+Accuracy:         4.4/5
+Humor:            4.6/5
+Actionability:    4.6/5
 ```
+
+Ships with a self-improving eval loop — ran its own tests, read its failures, rewrote its own instructions, re-tested.
 
 ## Install
+
 ```
-claude plugin add AfterRealm/blunt-cake
+claude marketplace add AfterRealm/marketplace
+claude plugin add afterrealm/blunt-cake
+```
+
+Or just grab the skill file:
+```
+mkdir -p ~/.claude/skills/blunt-cake
+curl -o ~/.claude/skills/blunt-cake/SKILL.md https://raw.githubusercontent.com/AfterRealm/blunt-cake/master/SKILL.md
 ```
 
 **GitHub:** https://github.com/AfterRealm/blunt-cake
+**Marketplace:** https://github.com/AfterRealm/marketplace
 
 No frosting. Just cake. 🍰
