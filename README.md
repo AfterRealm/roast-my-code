@@ -6,11 +6,23 @@ Brutal honesty. Comedic delivery. Actual solutions.
 
 ## Install
 
+**Option 1: Via AfterRealm marketplace** (if you have Father Time or other AfterRealm skills)
 ```bash
-claude plugin add AfterRealm/blunt-cake
+claude plugin add afterrealm-plugins/blunt-cake
 ```
 
-Or manually: copy this repo to `~/.claude/plugins/blunt-cake/`
+**Option 2: Copy to skills directory** (works for everyone)
+```bash
+mkdir -p ~/.claude/skills/blunt-cake
+curl -o ~/.claude/skills/blunt-cake/SKILL.md https://raw.githubusercontent.com/AfterRealm/blunt-cake/master/SKILL.md
+```
+
+**Option 3: Clone the repo** (includes evals, test files, and GitHub Action)
+```bash
+git clone https://github.com/AfterRealm/blunt-cake.git ~/.claude/skills/blunt-cake
+```
+
+After install, run `/skills` in Claude Code to verify it appears, then trigger it with "roast my code" or similar.
 
 ## Seven Modes
 
