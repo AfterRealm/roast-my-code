@@ -1,0 +1,203 @@
+{
+  "timestamp": "2026-04-05T03:02:10.925091Z",
+  "iteration": 1,
+  "test_cases": 3,
+  "avg_pass_rate": 0.93,
+  "avg_accuracy": 4.7,
+  "avg_humor": 5.0,
+  "avg_actionability": 5.0,
+  "avg_format_compliance": 5.0,
+  "per_case": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "assertions_total": 10,
+      "assertions_passed": 9,
+      "pass_rate": 0.9,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — Hardcoded JWT Secret (Line 5)' with Severity: CRITICAL and fix using process.env.JWT_SECRET"
+        },
+        {
+          "assertion": "Calls out the admin escalation via query parameter (req.query.admin)",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — Query Parameter Admin Escalation (Lines 40-42)' describes how 'any authenticated user can append ?admin=true to any admin-protected route and bypass authorization entirely'"
+        },
+        {
+          "assertion": "Mentions localStorage as insecure for token storage",
+          "passed": true,
+          "evidence": "Finding '💀 DEAD CODE — localStorage Comment (Line 22)' states 'it's recommending localStorage for JWT storage, which is vulnerable to XSS' and suggests httpOnly cookies instead"
+        },
+        {
+          "assertion": "Notes the lack of rate limiting on login",
+          "passed": false,
+          "evidence": "No finding mentions rate limiting on the login endpoint. The output covers many issues but rate limiting is not among them."
+        },
+        {
+          "assertion": "Notes the JWT has no expiration",
+          "passed": true,
+          "evidence": "Finding '🔓 SECURITY — JWT Has No Expiration (Line 21)' states 'creates a token with no expiresIn option. Once issued, this token is valid until the heat death of the universe' with fix adding { expiresIn: '1h' }"
+        },
+        {
+          "assertion": "Provides a fix for each finding",
+          "passed": true,
+          "evidence": "All 9 findings include a Fix section with code snippets or actionable guidance (e.g., 'Use an actual database' for the in-memory store)"
+        },
+        {
+          "assertion": "Score is between 0 and 5 (this code has critical issues)",
+          "passed": true,
+          "evidence": "Score is '2/10' — while the scale is /10 not /5, the score of 2 clearly reflects critical issues and falls in the low range. Interpreting as 0-5 equivalent: 2/10 maps to ~1/5."
+        },
+        {
+          "assertion": "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+          "passed": true,
+          "evidence": "Output contains all four sections: '## The Verdict', '## Findings', '## The Scoreboard' (with table), and '## Final Words'"
+        },
+        {
+          "assertion": "Roasts are funny but not mean-spirited",
+          "passed": true,
+          "evidence": "Humor is playful and creative: 'like it's a cheat code from GTA', 'These tokens live forever. Like vampires. Except vampires are at least cool', 'like eating flour straight from the bag'. Tone targets the code, not the person."
+        },
+        {
+          "assertion": "Acknowledges the bcrypt usage as something done right",
+          "passed": true,
+          "evidence": "Final Words: 'I'll give you this: you used bcrypt with a reasonable salt round, and you returned the same error message for \"user not found\" and \"wrong password\"... that's actually good practice'"
+        }
+      ],
+      "bare_output_len": 3243,
+      "skill_output_len": 7437
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "assertions_total": 8,
+      "assertions_passed": 7,
+      "pass_rate": 0.88,
+      "quality": {
+        "accuracy": 4,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the SQL LIKE injection risk in search_todos",
+          "passed": true,
+          "evidence": "Finding #1 '🔓 SECURITY — SQL LIKE injection via search endpoint' explicitly identifies the `%{q}%` pattern injection risk, explains LIKE wildcards `%` and `_`, and distinguishes it from parameterized query protection."
+        },
+        {
+          "assertion": "Calls out debug=True in production",
+          "passed": true,
+          "evidence": "Finding #8 '💀 DEAD CODE — debug=True in production' calls out the Werkzeug debugger as an RCE vector and notes the risk of copy-paste deployment patterns."
+        },
+        {
+          "assertion": "Notes the lack of authentication",
+          "passed": false,
+          "evidence": "No finding mentions authentication, authorization, or access control. The review covers SQL injection, debug mode, validation, connection management, and style issues but never flags the absence of auth."
+        },
+        {
+          "assertion": "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+          "passed": true,
+          "evidence": "Final Words section: 'you used parameterized queries (mostly), your routes are clean, your code is readable, and the structure shows someone who's built APIs before.' The WAL pragma is discussed (though as a performance issue, its use is implicitly acknowledged as a good practice)."
+        },
+        {
+          "assertion": "Score is between 5 and 8",
+          "passed": true,
+          "evidence": "Score: 5/10 — 🥩 Rare"
+        },
+        {
+          "assertion": "Output follows the specified format",
+          "passed": true,
+          "evidence": "Output includes: title with filename, verdict section, numbered findings with severity/fix, scoreboard table, and final words. Each finding has What's wrong, Severity, and Fix sections with code blocks."
+        },
+        {
+          "assertion": "Does not manufacture fake critical issues to be dramatic",
+          "passed": true,
+          "evidence": "All findings are legitimate: LIKE injection, silent delete, missing validation, type coercion, WAL pragma per-request, connection leak, lastrowid redundancy, debug=True, deprecated utcnow(). None are fabricated or inflated beyond reason."
+        },
+        {
+          "assertion": "Provides fixes for each finding",
+          "passed": true,
+          "evidence": "All 9 findings include a 'Fix:' section with concrete code snippets: escape_like function, rowcount check, VALID_PRIORITIES set, boolean coercion, init_db separation, teardown_appcontext pattern, cursor.lastrowid, env-based debug flag, and timezone.utc usage."
+        }
+      ],
+      "bare_output_len": 3218,
+      "skill_output_len": 7442
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the god function (proc does everything)",
+          "passed": true,
+          "evidence": "Architecture section: \"`proc()` is a 120-line god function with 8 parameters and 7+ modes. It's a dispatcher masquerading as a function.\""
+        },
+        {
+          "assertion": "Calls out the global mutable state (data, cache, log, errs)",
+          "passed": true,
+          "evidence": "Performance section: \"`data`, `cache`, `log`, and `errs` are module-level globals that only ever grow. There's no eviction, no size limit, no cleanup.\""
+        },
+        {
+          "assertion": "Notes the recursive retry pattern as dangerous (potential stack overflow)",
+          "passed": true,
+          "evidence": "Bug finding: \"The exception handler at line 115 retries with `retry-1`, but `mode='load'` ALSO retries internally on file-not-found. A missing file triggers up to 3 inner retries... then 3 more outer retries.\" Also mentions recursive retry explicitly in the fix: \"Pick ONE retry strategy. Implement it outside the function (decorator or wrapper), not recursively inside it.\""
+        },
+        {
+          "assertion": "Mentions the excessive parameter count",
+          "passed": true,
+          "evidence": "Architecture section: \"`proc()` is a 120-line god function with 8 parameters and 7+ modes.\""
+        },
+        {
+          "assertion": "Identifies the string-based mode dispatch as unmaintainable",
+          "passed": true,
+          "evidence": "Verdict: \"This function has more modes than a Swiss Army knife.\" Architecture: \"Every mode is a completely independent operation sharing nothing but global state. This is unmaintainable, untestable, and unreadable.\""
+        },
+        {
+          "assertion": "Score is between 0 and 4 (this is genuinely bad code)",
+          "passed": true,
+          "evidence": "\"Score: 3/10 — 🗑️ Dumpster Fire\" — 3/10 maps to a score of 3 on the 0-10 scale, which is between 0 and 4."
+        },
+        {
+          "assertion": "Output follows the specified format with all sections",
+          "passed": true,
+          "evidence": "Contains all expected sections: The Verdict (with score), Findings (with multiple categorized issues), The Scoreboard (summary table), and Final Words. Each finding includes What's wrong, Severity, and Fix."
+        },
+        {
+          "assertion": "Roasts are creative and funny, not generic",
+          "passed": true,
+          "evidence": "Multiple creative roasts: \"storing everything in global mutable dictionaries like a squirrel hiding nuts in every pocket of a trenchcoat\", \"This code has the problem-solving strategy of a toddler playing peek-a-boo\", \"accepts a `timeout` parameter the way I accept terms and conditions — acknowledged, never acted upon\", \"Using MD5 for hashing in 2026 is like using a screen door on a submarine\", relay race metaphor for pipeline bug."
+        },
+        {
+          "assertion": "Suggests breaking proc() into separate functions as the primary fix",
+          "passed": true,
+          "evidence": "Architecture fix: \"Split into separate functions — `load_file()`, `save_file()`, `transform()`, `analyze()`, `batch()`, `pipeline()`. Use a class if they need shared state.\" Includes a full DataProcessor class example."
+        },
+        {
+          "assertion": "The Final Words section exists and delivers a memorable closing roast",
+          "passed": true,
+          "evidence": "Final Words exists and delivers: \"The fix isn't a refactor, it's an exorcism.\" Also: \"you just built all of it inside one function like you were trying to win a 'most responsibilities per function' speedrun\" and \"The code works *despite itself*, which honestly? Kind of impressive.\""
+        }
+      ],
+      "bare_output_len": 4058,
+      "skill_output_len": 9248
+    }
+  ]
+}

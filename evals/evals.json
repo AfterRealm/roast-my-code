@@ -1,0 +1,60 @@
+{
+  "skill_name": "roast-my-code",
+  "evals": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "prompt": "Roast this authentication module for me",
+      "expected_output": "Should identify: hardcoded secret, localStorage token storage, admin role escalation via query param, no rate limiting, in-memory user store, no token expiration. Score should be 2-4 (dumpster fire to rare). Roasts should be funny but accurate.",
+      "files": ["evals/files/bad_auth.js"],
+      "assertions": [
+        "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+        "Calls out the admin escalation via query parameter (req.query.admin)",
+        "Mentions localStorage as insecure for token storage",
+        "Notes the lack of rate limiting on login",
+        "Notes the JWT has no expiration",
+        "Provides a fix for each finding",
+        "Score is between 0 and 5 (this code has critical issues)",
+        "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+        "Roasts are funny but not mean-spirited",
+        "Acknowledges the bcrypt usage as something done right"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "prompt": "Roast my code please",
+      "expected_output": "Should find some issues (SQL search without sanitization, debug=True, no auth, datetime.utcnow deprecation, delete without confirmation) but overall recognize it as competent code. Score should be 5-7. Roasts should acknowledge good patterns while finding real issues.",
+      "files": ["evals/files/decent_api.py"],
+      "assertions": [
+        "Identifies the SQL LIKE injection risk in search_todos",
+        "Calls out debug=True in production",
+        "Notes the lack of authentication",
+        "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+        "Score is between 5 and 8 (decent code with real but non-critical issues)",
+        "Output follows the specified format",
+        "Does not manufacture fake critical issues to be dramatic",
+        "Provides fixes for each finding"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "prompt": "Roast this",
+      "expected_output": "Should identify: god function, global mutable state, recursive retry with sleep, 10+ parameters, no type hints, string-based dispatch, unbounded recursion risk, MD5 usage. Score should be 1-3. This is the ultimate roast target.",
+      "files": ["evals/files/spaghetti.py"],
+      "assertions": [
+        "Identifies the god function (proc does everything)",
+        "Calls out the global mutable state (data, cache, log, errs)",
+        "Notes the recursive retry pattern as dangerous (potential stack overflow)",
+        "Mentions the excessive parameter count",
+        "Identifies the string-based mode dispatch as unmaintainable",
+        "Score is between 0 and 4 (this is genuinely bad code)",
+        "Output follows the specified format with all sections",
+        "Roasts are creative and funny, not generic",
+        "Suggests breaking proc() into separate functions as the primary fix",
+        "The Final Words section exists and delivers a memorable closing roast"
+      ]
+    }
+  ]
+}
