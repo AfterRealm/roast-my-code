@@ -1,37 +1,26 @@
-# 🍰 Blunt Cake — a Claude Code Agent Skill
+# 🍰 Blunt Cake — Code review that doesn't sugarcoat
 
-Your code review called. It said it's tired of being boring.
+You know that friend who'll tell you your outfit looks bad before you leave the house? That's Blunt Cake, but for your code.
 
-**Blunt Cake** is an agent skill with four modes that cover everything from quick laughs to professional-grade analysis. Every roast is backed by a real finding. Every finding comes with a fix.
+**4 modes. Real findings. No fluff.**
 
-## Four modes
+**🔥 Standard** — fast single-pass. Finds the issues, delivers them straight, gives you the fix. Done.
 
-**🔥 Standard Roast** — single-pass review. Fast, funny, thorough.
+**👨‍🍳 Panel** — 4 specialist agents tear through your code in parallel (security, performance, architecture, style). A coordinator deduplicates and cross-confirms. If 3 out of 4 specialists independently flag the same thing, you should probably fix it.
 
-**👨‍🍳 Panel Roast** — spawns 4 specialist agents in parallel (Security Auditor, Performance Analyst, Architecture Critic, Style Judge). Head Chef merges findings. Cross-confirmed issues get flagged with higher confidence. It's a roast *panel*.
+**🎯 Skill Review** — feed it a SKILL.md and it tells you what's missing, what's vague, and what'll break. 8 categories from trigger design to eval-readiness.
 
-**🎯 Skill Roast** — feed it a SKILL.md and it roasts the *skill design itself*. Trigger clarity, instruction gaps, edge cases, eval-readiness. Meta.
+**📊 Eval** — dead serious. Generates assertions, grades each PASS/FAIL with evidence, scores 5 quality dimensions, gives you a letter grade. The final verdict is the only part that roasts you.
 
-**📊 Eval Mode** — dead serious code analysis. Generates testable assertions, grades each PASS/FAIL with evidence, scores 5 quality dimensions, assigns a letter grade. Professional report. Then delivers the verdict with roast energy.
+## It tested itself to 100%
+Ships with a self-improving eval loop. Ran its own tests, read its failures, rewrote its own instructions, re-tested. 93% → 100% in 4 iterations. Then we Panel Roasted our own production MCP server with it and fixed all 16 findings the same night.
 
-## Sample roasts
-> *"You hashed the password with bcrypt but stored the session token in localStorage. That's like locking your front door and leaving the key taped to the window."*
-
-> *"`proc()` takes 8 parameters, handles 7 modes, and has a default behavior for when you pass no mode at all. It's not a function — it's a microservice disguised as a `def`."*
-
-## Sample eval verdict
-> *Grade: C — "You validated the password and forgot everything else. Like acing the quiz and failing the final."*
-
-## The Roast Scale
-| Score | Rating |
-|:---:|---|
-| 10 | 👨‍🍳 Chef's Kiss — I came to roast and left humbled |
-| 6-7 | 🍳 Medium — Edible but needs seasoning |
-| 2-3 | 🗑️ Dumpster Fire — I've seen better code in a CAPTCHA |
-| 0-1 | ☠️ Health Violation — Ship this and someone's going to the hospital |
-
-## It improves itself
-Ships with a self-improving eval loop. The skill runs tests, reads its own failures, proposes fixes to its own SKILL.md, and re-evaluates. Went from 93% → 100% in 4 iterations. Automated.
+```
+Assertion pass rate:  100%
+Accuracy:             4.7/5
+Humor:                5.0/5
+Actionability:        5.0/5
+```
 
 ## Install
 ```
@@ -40,4 +29,4 @@ claude plugin add AfterRealm/blunt-cake
 
 **GitHub:** https://github.com/AfterRealm/blunt-cake
 
-Your code's been talking behind your back. Time to find out what it's saying. 🔥
+No frosting. Just cake. 🍰
