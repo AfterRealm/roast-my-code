@@ -1,0 +1,203 @@
+{
+  "timestamp": "2026-04-05T03:34:11.844967Z",
+  "iteration": 4,
+  "test_cases": 3,
+  "avg_pass_rate": 1.0,
+  "avg_accuracy": 4.7,
+  "avg_humor": 5.0,
+  "avg_actionability": 5.0,
+  "avg_format_compliance": 5.0,
+  "per_case": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — Hardcoded JWT Secret' with Severity: CRITICAL, describes the secret \"super_secret_key_123\" and provides an env var fix."
+        },
+        {
+          "assertion": "Calls out the admin escalation via query parameter (req.query.admin)",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — Anyone Can Become Admin With a Query Parameter' explicitly calls out `req.query.admin === 'true'` as a complete authorization bypass, rated CRITICAL."
+        },
+        {
+          "assertion": "Mentions localStorage as insecure for token storage",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — localStorage for JWT Storage' states it is 'accessible to any JavaScript running on the page' and recommends httpOnly cookies instead."
+        },
+        {
+          "assertion": "Notes the lack of rate limiting on login",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — No Rate Limiting on Login' states 'No rate limiting, no account lockout, no delay on failed attempts' and suggests express-rate-limit."
+        },
+        {
+          "assertion": "Notes the JWT has no expiration",
+          "passed": true,
+          "evidence": "Finding titled '🔓 SECURITY — JWTs Never Expire' notes 'jwt.sign() is called without an expiresIn option. Stolen tokens are valid forever.' Rated CRITICAL with a fix providing expiresIn: '1h'."
+        },
+        {
+          "assertion": "Provides a fix for each finding",
+          "passed": true,
+          "evidence": "All 11 findings include a Fix section with either code snippets or actionable recommendations (e.g., 'Use httpOnly, secure, sameSite cookies', 'Add express-rate-limit', 'Use a real database')."
+        },
+        {
+          "assertion": "Score is between 0 and 5 (this code has critical issues)",
+          "passed": true,
+          "evidence": "Score: 1/10 — ☠️ Health Violation. The score of 1 is between 0 and 5."
+        },
+        {
+          "assertion": "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+          "passed": true,
+          "evidence": "Output contains all four required sections: '## The Verdict', '## Findings', '## The Scoreboard' (with category table), and '## Final Words'."
+        },
+        {
+          "assertion": "Roasts are funny but not mean-spirited",
+          "passed": true,
+          "evidence": "Roasts use creative analogies without personal attacks: 'Dracula called — he wants your session management strategy', 'like eating flour straight from the bag', 'screen doors on submarines'. The humor targets the code, not the developer."
+        },
+        {
+          "assertion": "Acknowledges the bcrypt usage as something done right",
+          "passed": true,
+          "evidence": "Final Words explicitly states: 'you used bcrypt instead of rolling your own hash, and you correctly return the same error message for \"user not found\" and \"wrong password\" to prevent user enumeration. Those are genuinely good instincts'."
+        }
+      ],
+      "bare_output_len": 3491,
+      "skill_output_len": 7727
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "assertions_total": 8,
+      "assertions_passed": 8,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 4,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the SQL LIKE injection risk in search_todos",
+          "passed": true,
+          "evidence": "Finding #2 identifies the LIKE metacharacter issue: \"f'%{q}%' passes raw user input as LIKE pattern content. While the ? parameterization prevents SQL injection, LIKE metacharacters (%, _) in user input aren't escaped.\" Correctly notes parameterization is present but LIKE wildcards are unescaped."
+        },
+        {
+          "assertion": "Calls out debug=True in production",
+          "passed": true,
+          "evidence": "Finding #7 explicitly calls out debug mode: \"app.run(debug=True) enables the Werkzeug debugger, which provides an interactive shell to anyone who can trigger an exception.\" Rated HIGH severity with an environment-variable-based fix."
+        },
+        {
+          "assertion": "Notes the lack of authentication",
+          "passed": true,
+          "evidence": "Finding #1 leads with \"No authentication whatsoever\" rated CRITICAL: \"Zero authentication or authorization. Any client can hit any endpoint.\" Includes a concrete API key decorator fix."
+        },
+        {
+          "assertion": "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+          "passed": true,
+          "evidence": "Final Words section: \"The SQL is parameterized (mostly), the REST routes make sense, the CRUD is complete, and you even thought about sorting by priority. That puts you ahead of 60% of the todo apps I've seen.\" Also noted in the LIKE finding: \"you actually did use ? placeholders. Okay, you survive this one.\" WAL mode mentioned in the performance finding as a known pattern."
+        },
+        {
+          "assertion": "Score is between 5 and 8 (decent code with real but non-critical issues)",
+          "passed": true,
+          "evidence": "Score is explicitly \"5/10 — 🥩 Rare\" which falls within the 5-8 range."
+        },
+        {
+          "assertion": "Output follows the specified format",
+          "passed": true,
+          "evidence": "Output includes all expected sections: title with file name, The Verdict with score, Findings with severity/fix/description for each, The Scoreboard table with category breakdown, and Final Words. Each finding uses the emoji-tagged category format with What's wrong/Severity/Fix structure."
+        },
+        {
+          "assertion": "Does not manufacture fake critical issues to be dramatic",
+          "passed": true,
+          "evidence": "All findings are legitimate: no auth (CRITICAL - valid), LIKE metacharacters (LOW - correctly downgraded from injection), delete returning false success (MEDIUM), no input validation (MEDIUM), connection-per-request (MEDIUM), debug mode (HIGH), no error handling (MEDIUM), deprecated utcnow (LOW), unvalidated completed field (LOW). The race condition finding even self-corrects: \"SQLite's last_insert_rowid() is connection-scoped (so this is actually safe with separate connections)\" — honest rather than dramatic."
+        },
+        {
+          "assertion": "Provides fixes for each finding",
+          "passed": true,
+          "evidence": "All 10 findings include concrete code fix blocks: API key decorator, escape_like function, rowcount check for delete, VALID_PRIORITIES set, Flask g pattern, cursor.lastrowid, env-var debug toggle, global errorhandler, timezone.utc, and boolean coercion for completed field."
+        }
+      ],
+      "bare_output_len": 3008,
+      "skill_output_len": 8687
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the god function (proc does everything)",
+          "passed": true,
+          "evidence": "Architecture finding titled 'One Function to Ruin Them All': 'This is a god function. It handles file I/O, string transforms, hashing, batch orchestration, and pipeline execution — all behind a mode string parameter.'"
+        },
+        {
+          "assertion": "Calls out the global mutable state (data, cache, log, errs)",
+          "passed": true,
+          "evidence": "Architecture finding titled 'Four Global Mutable Dictionaries Walking Into a Bar': '`data = {}`, `cache = {}`, `log = []`, `errs = []` — four globals, zero encapsulation, infinite sadness.'"
+        },
+        {
+          "assertion": "Notes the recursive retry pattern as dangerous (potential stack overflow)",
+          "passed": true,
+          "evidence": "Performance finding 'Retry Explosion in Batch/Pipeline Mode': 'Each failure sleeps and retries recursively. A batch of pipeline operations can produce exponential retry cascading.' Also the bug finding on retry logic in load mode."
+        },
+        {
+          "assertion": "Mentions the excessive parameter count",
+          "passed": true,
+          "evidence": "Architecture finding states: '`proc()` has 8 parameters, 7 modes, 12 sub-operations, and zero self-respect.'"
+        },
+        {
+          "assertion": "Identifies the string-based mode dispatch as unmaintainable",
+          "passed": true,
+          "evidence": "Architecture finding: 'all behind a `mode` string parameter. It's not a function, it's a dispatch table cosplaying as one. Every new feature means adding another `elif` branch to this 120-line monster.'"
+        },
+        {
+          "assertion": "Score is between 0 and 4 (this is genuinely bad code)",
+          "passed": true,
+          "evidence": "Score: 2/10 — 🗑️ Dumpster Fire"
+        },
+        {
+          "assertion": "Output follows the specified format with all sections",
+          "passed": true,
+          "evidence": "Contains all required sections: The Verdict (with score), Findings (with severity, fix suggestions, and roast quotes), The Scoreboard (category table), and Final Words."
+        },
+        {
+          "assertion": "Roasts are creative and funny, not generic",
+          "passed": true,
+          "evidence": "Multiple creative roasts: 'It's not a function, it's a dispatch table cosplaying as one', 'Your code reads like someone sat on a keyboard', 'four globals, zero encapsulation, infinite sadness', 'a file that even `git blame` would refuse to take credit for', 'You named the file spaghetti.py. That's not a filename, that's a confession.'"
+        },
+        {
+          "assertion": "Suggests breaking proc() into separate functions as the primary fix",
+          "passed": true,
+          "evidence": "First architecture finding fix: 'Split into actual functions: `load_file()`, `save_file()`, `transform()`, `analyze()`, `run_batch()`, `run_pipeline()`. Each with typed parameters that make sense for what they do.'"
+        },
+        {
+          "assertion": "The Final Words section exists and delivers a memorable closing roast",
+          "passed": true,
+          "evidence": "Final Words section exists with memorable closing: 'You didn't write code — you wrote a *mystery*... At least spaghetti has structure. This is more of a code risotto... Right now you have a file that even `git blame` would refuse to take credit for.'"
+        }
+      ],
+      "bare_output_len": 4254,
+      "skill_output_len": 9341
+    }
+  ]
+}

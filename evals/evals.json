@@ -4,6 +4,7 @@
     {
       "id": 1,
       "name": "security-nightmare",
+      "mode": "standard",
       "prompt": "Roast this authentication module for me",
       "expected_output": "Should identify: hardcoded secret, localStorage token storage, admin role escalation via query param, no rate limiting, in-memory user store, no token expiration. Score should be 2-4 (dumpster fire to rare). Roasts should be funny but accurate.",
       "files": ["evals/files/bad_auth.js"],
@@ -23,6 +24,7 @@
     {
       "id": 2,
       "name": "decent-code",
+      "mode": "standard",
       "prompt": "Roast my code please",
       "expected_output": "Should find some issues (SQL search without sanitization, debug=True, no auth, datetime.utcnow deprecation, delete without confirmation) but overall recognize it as competent code. Score should be 5-7. Roasts should acknowledge good patterns while finding real issues.",
       "files": ["evals/files/decent_api.py"],
@@ -40,6 +42,7 @@
     {
       "id": 3,
       "name": "spaghetti-monster",
+      "mode": "standard",
       "prompt": "Roast this",
       "expected_output": "Should identify: god function, global mutable state, recursive retry with sleep, 10+ parameters, no type hints, string-based dispatch, unbounded recursion risk, MD5 usage. Score should be 1-3. This is the ultimate roast target.",
       "files": ["evals/files/spaghetti.py"],
@@ -54,6 +57,43 @@
         "Roasts are creative and funny, not generic",
         "Suggests breaking proc() into separate functions as the primary fix",
         "The Final Words section exists and delivers a memorable closing roast"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "panel-roast-security",
+      "mode": "panel",
+      "prompt": "Panel roast this authentication module",
+      "expected_output": "Should spawn 4 specialist agents, merge findings, produce a roast with Panel Notes table showing which agent found what. Cross-confirmed findings should be highlighted. Should catch everything the standard roast catches plus deeper specialist-specific findings.",
+      "files": ["evals/files/bad_auth.js"],
+      "assertions": [
+        "Output includes a Panel Notes table with all 4 agents listed",
+        "At least one finding is marked as cross-confirmed (found by multiple agents)",
+        "Security Auditor section shows findings in the Panel Notes",
+        "Identifies the hardcoded JWT secret",
+        "Identifies the admin escalation via query parameter",
+        "Total finding count is equal to or greater than the standard roast",
+        "Output follows the format with Verdict, Findings, Panel Notes, Final Words",
+        "Score is between 0 and 5"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "skill-roast-weak",
+      "mode": "skill",
+      "prompt": "Roast this skill",
+      "expected_output": "Should identify that the skill is extremely vague — no trigger specificity, no output format, no process, generic rules, no edge case handling. Score should be 1-3 (napkin sketch). Should use the skill-specific categories and output format.",
+      "files": ["evals/files/weak_skill.md"],
+      "assertions": [
+        "Identifies the trigger as too vague ('When the user asks' matches almost anything)",
+        "Calls out the lack of a defined output format or template",
+        "Notes the missing review process or workflow steps",
+        "Criticizes the rules as too generic ('Be nice' is not actionable)",
+        "Notes poor eval-readiness (you can't write assertions for undefined output)",
+        "Score is between 1 and 4 (this is a napkin sketch, not a production skill)",
+        "Output uses the Skill Roast format with skill-specific categories in the Scoreboard",
+        "Suggestions are constructive and specific enough to actually improve the skill",
+        "The Scoreboard uses skill categories (Trigger, Instructions, Edge Cases, etc.) not code categories"
       ]
     }
   ]

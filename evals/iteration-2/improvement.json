@@ -1,0 +1,12 @@
+[
+  {
+    "section": "Review Categories — SECURITY",
+    "what": "Expand the SECURITY category description to explicitly distinguish between 'broken security' and 'missing security', with examples of absent-but-expected mechanisms",
+    "why": "The current description ('auth issues') reads as 'check the auth code for bugs.' A reviewer following this will grep for auth-related code and review it — but if there IS no auth code, there's nothing to grep and the issue goes undetected. Making 'missing mechanisms' an explicit sub-category forces the reviewer to ask 'what security should exist here but doesn't?'"
+  },
+  {
+    "section": "Review Process",
+    "what": "Add a step between reading the code and identifying issues: assess what's missing, not just what's broken",
+    "why": "The current process is purely analytical (read → find issues → roast). It never asks the reviewer to consider the absence of expected patterns. Adding a 'what's missing?' step generalizes beyond auth to catch any category of missing-but-expected functionality (error handling, logging, rate limiting, input sanitization layers, etc.)"
+  }
+]

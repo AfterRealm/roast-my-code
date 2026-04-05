@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-04-05T03:21:12.054728Z",
+  "iteration": 2,
+  "test_cases": 3,
+  "avg_pass_rate": 0.63,
+  "avg_accuracy": 3.0,
+  "avg_humor": 3.3,
+  "avg_actionability": 3.3,
+  "avg_format_compliance": 3.3,
+  "per_case": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+          "passed": true,
+          "evidence": "Finding titled 'Hardcoded Secret in Source Code' with Severity: CRITICAL, describes SECRET = \"super_secret_key_123\" as hardcoded, weak, and committed to version control."
+        },
+        {
+          "assertion": "Calls out the admin escalation via query parameter (req.query.admin)",
+          "passed": true,
+          "evidence": "Finding titled 'The \"Please Sir, May I Be Admin\" Vulnerability' — 'Your isAdmin middleware grants admin access to anyone who puts ?admin=true in the URL.' Severity: CRITICAL."
+        },
+        {
+          "assertion": "Mentions localStorage as insecure for token storage",
+          "passed": true,
+          "evidence": "Style Crime finding states: 'This comment implies tokens should be stored in localStorage, which is vulnerable to XSS. Use httpOnly cookies instead.'"
+        },
+        {
+          "assertion": "Notes the lack of rate limiting on login",
+          "passed": true,
+          "evidence": "Finding titled 'bcrypt Is Fine, But No Rate Limiting' — 'you have no rate limiting on login (bad!)... an attacker can trigger unlimited hashes per second.' Suggests express-rate-limit."
+        },
+        {
+          "assertion": "Notes the JWT has no expiration",
+          "passed": true,
+          "evidence": "Finding titled 'JWT Tokens Never Expire' — 'jwt.sign() is called without an expiresIn option. Once a token is issued, it's valid until the heat death of the universe.'"
+        },
+        {
+          "assertion": "Provides a fix for each finding",
+          "passed": true,
+          "evidence": "All 9 findings include a Fix section with code snippets or actionable guidance (admin bypass fix, env var for secret, expiresIn for JWT, Bearer parsing, existence check, input validation, database suggestion, rate limiting middleware, httpOnly cookies recommendation)."
+        },
+        {
+          "assertion": "Score is between 0 and 5 (this code has critical issues)",
+          "passed": true,
+          "evidence": "Score: 2/10 — the score is 2, which falls between 0 and 5."
+        },
+        {
+          "assertion": "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+          "passed": true,
+          "evidence": "Output contains all four required sections: '## The Verdict', '## Findings', '## The Scoreboard' (with category table), and '## Final Words'."
+        },
+        {
+          "assertion": "Roasts are funny but not mean-spirited",
+          "passed": true,
+          "evidence": "Humor is creative and targeted at the code, not the developer: 'built a front door out of wet cardboard', 'that's not authorization — that's the honor system', 'valid until the heat death of the universe', 'an open invitation with a velvet rope made of string cheese.' Tone is playful, not hostile."
+        },
+        {
+          "assertion": "Acknowledges the bcrypt usage as something done right",
+          "passed": true,
+          "evidence": "Final Words: 'you used bcrypt instead of storing plaintext passwords, and for that single decision I will light one candle in your honor.' Also the rate limiting finding opens with 'You're using bcrypt (good!)'"
+        }
+      ],
+      "bare_output_len": 3649,
+      "skill_output_len": 7114
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "assertions_total": 8,
+      "assertions_passed": 7,
+      "pass_rate": 0.88,
+      "quality": {
+        "accuracy": 4,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the SQL LIKE injection risk in search_todos",
+          "passed": true,
+          "evidence": "Finding #1 'SQL Injection in Search Endpoint' explicitly identifies that '%' and '_' characters are LIKE wildcards and explains: 'A user searching for % gets every record. Searching _ matches any single character. This is a data leak via wildcard injection.'"
+        },
+        {
+          "assertion": "Calls out debug=True in production",
+          "passed": true,
+          "evidence": "Finding #6 'debug=True in Production Starter' states: 'app.run(debug=True) exposes the Werkzeug debugger, which gives interactive Python console access to anyone who can trigger an error. This is a known RCE vector.' Rated HIGH severity."
+        },
+        {
+          "assertion": "Notes the lack of authentication",
+          "passed": false,
+          "evidence": "No finding mentions authentication, authorization, or access control. The output identifies security issues (LIKE injection, priority validation, debug mode) but never flags that the API has no authentication mechanism."
+        },
+        {
+          "assertion": "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+          "passed": true,
+          "evidence": "Final Words section states: 'Your parameterized queries show you've at least heard of SQL injection. The WAL pragma tells me you've read a SQLite optimization blog post. The route structure is clean and RESTful.' Note: it acknowledges WAL and RESTful design but actually criticizes error handling rather than praising it — partial credit on 2 of 3."
+        },
+        {
+          "assertion": "Score is between 5 and 8",
+          "passed": true,
+          "evidence": "Score is explicitly stated as '5/10 — 🥩 Rare', which falls within the 5-8 range."
+        },
+        {
+          "assertion": "Output follows the specified format",
+          "passed": true,
+          "evidence": "Output includes all expected sections: title with file name, 'The Verdict' with score, 'Findings' with severity/fix for each, 'The Scoreboard' table with categories/counts/severity, and 'Final Words' closing section. Each finding has What's wrong, Severity, and Fix subsections."
+        },
+        {
+          "assertion": "Does not manufacture fake critical issues to be dramatic",
+          "passed": true,
+          "evidence": "All findings are legitimate: LIKE wildcard injection is real, debug=True RCE is real, delete-without-existence-check is real, last_insert_rowid race condition is technically valid (though low risk as noted), no priority validation is real, connection churn is real, utcnow() deprecation is real. No fabricated issues. The race condition finding is slightly overstated but explicitly marked LOW severity."
+        },
+        {
+          "assertion": "Provides fixes for each finding",
+          "passed": true,
+          "evidence": "All 8 findings include a 'Fix:' section with concrete code snippets: escape_like function, rowcount check for delete, cursor.lastrowid, VALID_PRIORITIES set, Flask g-based connection pooling, environment variable for debug, timezone.utc replacement, and errorhandler decorator."
+        }
+      ],
+      "bare_output_len": 3673,
+      "skill_output_len": 7411
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "assertions_total": 10,
+      "assertions_passed": 0,
+      "pass_rate": 0.0,
+      "quality": {},
+      "assertion_details": [],
+      "bare_output_len": 3610,
+      "skill_output_len": 10155
+    }
+  ]
+}

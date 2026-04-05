@@ -1,0 +1,322 @@
+{
+  "timestamp": "2026-04-05T03:43:35.575916Z",
+  "iteration": 5,
+  "test_cases": 5,
+  "avg_pass_rate": 0.78,
+  "avg_accuracy": 4.2,
+  "avg_humor": 4.2,
+  "avg_actionability": 4.2,
+  "avg_format_compliance": 4.2,
+  "per_case": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+          "passed": true,
+          "evidence": "Finding titled 'Hardcoded JWT Secret' with Severity: CRITICAL — 'The JWT signing secret is a hardcoded string literal in source code.'"
+        },
+        {
+          "assertion": "Calls out the admin escalation via query parameter (req.query.admin)",
+          "passed": true,
+          "evidence": "Finding titled 'The Admin Bypass That Ended Democracy' — 'The isAdmin middleware checks req.query.admin === \"true\" and mutates the user's role to admin' with Severity: CRITICAL"
+        },
+        {
+          "assertion": "Mentions localStorage as insecure for token storage",
+          "passed": true,
+          "evidence": "Finding titled 'localStorage Recommendation' — 'localStorage, which is accessible to any JavaScript running on the page. A single XSS vulnerability anywhere in the app leaks every user's token.'"
+        },
+        {
+          "assertion": "Notes the lack of rate limiting on login",
+          "passed": true,
+          "evidence": "Finding titled 'No Rate Limiting on Login' — 'The login function has no rate limiting, account lockout, or delay mechanism. An attacker can make unlimited login attempts at network speed.'"
+        },
+        {
+          "assertion": "Notes the JWT has no expiration",
+          "passed": true,
+          "evidence": "Finding titled 'Tokens Never Expire' — 'jwt.sign() is called without an expiresIn option. Tokens have no expiration, meaning a compromised token grants permanent access.'"
+        },
+        {
+          "assertion": "Provides a fix for each finding",
+          "passed": true,
+          "evidence": "All major findings include Fix sections with code snippets: env variable for JWT secret, expiresIn for token expiry, Bearer token parsing, rate-limit middleware, admin role check from JWT claims, and registration duplicate check. The localStorage finding suggests httpOnly cookies."
+        },
+        {
+          "assertion": "Score is between 0 and 5 (this code has critical issues)",
+          "passed": true,
+          "evidence": "Score: 2/10 — the score of 2 falls between 0 and 5, appropriately reflecting the critical security issues."
+        },
+        {
+          "assertion": "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+          "passed": true,
+          "evidence": "Output contains all four sections: '## The Verdict', '## Findings', '## The Scoreboard', and '## Final Words'"
+        },
+        {
+          "assertion": "Roasts are funny but not mean-spirited",
+          "passed": true,
+          "evidence": "Humor is clever and code-focused: 'a family heirloom' for non-expiring tokens, 'trying to eat the menu' for Bearer parsing, 'the honor system with extra steps' for admin bypass. Jokes target the code, not the developer personally."
+        },
+        {
+          "assertion": "Acknowledges the bcrypt usage as something done right",
+          "passed": true,
+          "evidence": "Final Words: 'Credit where it's due: you used bcrypt with a reasonable salt round of 10' and Verdict: 'You used bcrypt, which tells me you know what security looks like'"
+        }
+      ],
+      "bare_output_len": 3557,
+      "skill_output_len": 7026
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "assertions_total": 8,
+      "assertions_passed": 8,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the SQL LIKE injection risk in search_todos",
+          "passed": true,
+          "evidence": "First finding: \"SQL LIKE injection via search endpoint\" — correctly identifies `f'%{q}%'` on Line 93 as passing unescaped wildcards into a LIKE pattern, with a working escape function fix."
+        },
+        {
+          "assertion": "Calls out debug=True in production",
+          "passed": true,
+          "evidence": "Dead Code finding: \"`debug=True` in production\" — identifies Line 100, explains Werkzeug debugger RCE risk, and provides env-var-based fix."
+        },
+        {
+          "assertion": "Notes the lack of authentication",
+          "passed": true,
+          "evidence": "Security finding: \"No authentication or rate limiting whatsoever\" — notes zero auth/authz/rate limiting and provides an API key decorator fix."
+        },
+        {
+          "assertion": "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+          "passed": true,
+          "evidence": "Final Words: \"the bones are solid. You've got parameterized queries (mostly), clean routing, a reasonable data model, and the code is readable.\" Also notes WAL mode awareness in the auth finding: \"env-configurable DB path, WAL mode suggests you're thinking about production.\""
+        },
+        {
+          "assertion": "Score is between 5 and 8",
+          "passed": true,
+          "evidence": "Score: 5/10 — within the 5-8 range."
+        },
+        {
+          "assertion": "Output follows the specified format",
+          "passed": true,
+          "evidence": "Contains all expected sections: title with roast header, The Verdict, Score, Findings with severity/fix blocks, The Scoreboard table, and Final Words."
+        },
+        {
+          "assertion": "Does not manufacture fake critical issues to be dramatic",
+          "passed": true,
+          "evidence": "All 10 findings are legitimate and well-evidenced: LIKE injection, input validation, no auth, phantom DELETE, connection leaks, redundant PRAGMA, no pagination, deprecated utcnow(), missing response body, debug=True. No fabricated issues."
+        },
+        {
+          "assertion": "Provides fixes for each finding",
+          "passed": true,
+          "evidence": "All 10 findings include a code block under a **Fix:** label with concrete, copy-pasteable Python solutions."
+        }
+      ],
+      "bare_output_len": 3270,
+      "skill_output_len": 9205
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "assertions_total": 10,
+      "assertions_passed": 9,
+      "pass_rate": 0.9,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the god function (proc does everything)",
+          "passed": true,
+          "evidence": "`proc()` is a god function. It handles file loading, saving, string transforms, hashing, sorting, filtering, flattening, analysis, batch execution, and pipelines."
+        },
+        {
+          "assertion": "Calls out the global mutable state (data, cache, log, errs)",
+          "passed": true,
+          "evidence": "Four global dicts that only grow and never shrink. Your app doesn't have a memory leak, it has a memory *philosophy*. Lines 4-7 — `data`, `cache`, `log`, and `errs` are global dicts/lists that accumulate indefinitely."
+        },
+        {
+          "assertion": "Notes the recursive retry pattern as dangerous (potential stack overflow)",
+          "passed": false,
+          "evidence": "The output discusses retry logic in two findings (file-not-found retry and catch-all exception retry) but focuses on latency, duplicate errors, and swallowed exceptions. It never explicitly calls out the recursive nature of `proc()` calling itself as a stack overflow risk."
+        },
+        {
+          "assertion": "Mentions the excessive parameter count",
+          "passed": true,
+          "evidence": "a single function that decided it wanted to be an entire application... takes **eight parameters**"
+        },
+        {
+          "assertion": "Identifies the string-based mode dispatch as unmaintainable",
+          "passed": true,
+          "evidence": "Each `mode` is a completely separate responsibility stitched together with `elif` chains. This is unmaintainable, untestable, and unreadable."
+        },
+        {
+          "assertion": "Score is between 0 and 4 (this is genuinely bad code)",
+          "passed": true,
+          "evidence": "**Score: 3/10 — 🗑️ Dumpster Fire**"
+        },
+        {
+          "assertion": "Output follows the specified format with all sections",
+          "passed": true,
+          "evidence": "Contains all expected sections: The Verdict, Findings (with multiple categorized issues), The Scoreboard, and Final Words."
+        },
+        {
+          "assertion": "Roasts are creative and funny, not generic",
+          "passed": true,
+          "evidence": "Multiple creative roasts: \"choose-your-own-adventure novel with 8 parameters and a dream\", \"Your app doesn't have a memory leak, it has a memory *philosophy*\", \"are you writing code or playing Scrabble with one tile?\", \"It's the appendix of your function signature.\""
+        },
+        {
+          "assertion": "Suggests breaking proc() into separate functions as the primary fix",
+          "passed": true,
+          "evidence": "Split into separate functions — `load_file()`, `save_file()`, `transform()`, `analyze()`, `run_batch()`, `run_pipeline()`. Use a dispatch dict if you still want a single entry point"
+        },
+        {
+          "assertion": "The Final Words section exists and delivers a memorable closing roast",
+          "passed": true,
+          "evidence": "\"It's like watching someone who knows how to cook every cuisine in the world... but they're doing it all in one pot at the same time. The filename promised spaghetti and by God, it delivered. 🍝\""
+        }
+      ],
+      "bare_output_len": 4136,
+      "skill_output_len": 9620
+    },
+    {
+      "id": 4,
+      "name": "panel-roast-security",
+      "assertions_total": 8,
+      "assertions_passed": 0,
+      "pass_rate": 0.0,
+      "quality": {
+        "accuracy": 1,
+        "humor": 1,
+        "actionability": 1,
+        "format_compliance": 1
+      },
+      "assertion_details": [
+        {
+          "assertion": "Output includes a Panel Notes table with all 4 agents listed",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no content produced"
+        },
+        {
+          "assertion": "At least one finding is marked as cross-confirmed (found by multiple agents)",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no findings present"
+        },
+        {
+          "assertion": "Security Auditor section shows findings in the Panel Notes",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no Security Auditor section exists"
+        },
+        {
+          "assertion": "Identifies the hardcoded JWT secret",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no findings present"
+        },
+        {
+          "assertion": "Identifies the admin escalation via query parameter",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no findings present"
+        },
+        {
+          "assertion": "Total finding count is equal to or greater than the standard roast",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — finding count is 0"
+        },
+        {
+          "assertion": "Output follows the format with Verdict, Findings, Panel Notes, Final Words",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no formatted sections present"
+        },
+        {
+          "assertion": "Score is between 0 and 5",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no score assigned"
+        }
+      ],
+      "bare_output_len": 3508,
+      "skill_output_len": 9
+    },
+    {
+      "id": 5,
+      "name": "skill-roast-weak",
+      "assertions_total": 9,
+      "assertions_passed": 9,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the trigger as too vague ('When the user asks' matches almost anything)",
+          "passed": true,
+          "evidence": "The Trigger section states: '\"When the user asks\" is not a trigger — it's a vibe. There's no specific phrase, keyword, or intent pattern. Every coding question in existence matches this.'"
+        },
+        {
+          "assertion": "Calls out the lack of a defined output format or template",
+          "passed": true,
+          "evidence": "The Output Format section states: 'No template. No structure. No consistent sections... Every output from this skill will look different from the last one.' and provides a concrete template suggestion."
+        },
+        {
+          "assertion": "Notes the missing review process or workflow steps",
+          "passed": true,
+          "evidence": "The Process section states: 'There is no defined workflow. No step 1, step 2... Your workflow has one step: \"do it.\" That's not a process, that's a dare.' Also covered in the Instructions section with a suggested 5-step process."
+        },
+        {
+          "assertion": "Criticizes the rules as too generic ('Be nice' is not actionable)",
+          "passed": true,
+          "evidence": "The Rules section states: 'Three rules, all subjective, none actionable. \"Be nice\" — compared to what baseline? \"Don't be too harsh\" — directly contradicts actually pointing out serious problems.' Compares them to 'a parent dropping a kid off at a birthday party.'"
+        },
+        {
+          "assertion": "Notes poor eval-readiness (you can't write assertions for undefined output)",
+          "passed": true,
+          "evidence": "The Eval-Readiness section states: 'I literally cannot tell if this skill is working correctly because \"helpful\" isn't a unit of measurement... If you can't test it, you can't improve it.' Provides specific testable success criteria as a suggestion."
+        },
+        {
+          "assertion": "Score is between 1 and 4 (this is a napkin sketch, not a production skill)",
+          "passed": true,
+          "evidence": "Score is '2/10 — 🗒️ Napkin sketch — you wrote a wish, not a skill'. 2 falls within the 1-4 range."
+        },
+        {
+          "assertion": "Output uses the Skill Roast format with skill-specific categories in the Scoreboard",
+          "passed": true,
+          "evidence": "The Scoreboard uses skill-specific categories: Trigger, Instructions, Edge Cases, Output Format, Process, Rules, Creativity, and Eval-Readiness. The overall format includes The Verdict, Findings with individual sections, The Scoreboard table, and Final Words."
+        },
+        {
+          "assertion": "Suggestions are constructive and specific enough to actually improve the skill",
+          "passed": true,
+          "evidence": "Every finding includes a detailed Suggestion with concrete markdown examples — e.g., the Trigger suggestion provides exact activation phrases and negative examples, the Output Format suggestion provides a full template with sections, the Rules suggestion provides 5 prioritized actionable rules."
+        },
+        {
+          "assertion": "The Scoreboard uses skill categories (Trigger, Instructions, Edge Cases, etc.) not code categories",
+          "passed": true,
+          "evidence": "Scoreboard categories are: Trigger, Instructions, Edge Cases, Output Format, Process, Rules, Creativity, Eval-Readiness — all skill-authoring categories, not code-review categories like Security, Performance, etc."
+        }
+      ],
+      "bare_output_len": 2743,
+      "skill_output_len": 9208
+    }
+  ]
+}
