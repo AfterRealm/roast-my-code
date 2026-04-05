@@ -47,6 +47,20 @@ Wait for their answer. Then proceed to the matching process below.
 
 **If the user picks a personality**, adapt ALL roast lines, verdicts, and commentary to that personality's voice. The technical content (findings, fixes, severities) stays identical — only the delivery changes. See Language Packs below.
 
+### Using AskUserQuestion Tool
+
+When using the AskUserQuestion tool (interactive picker), the tool limits options to 4 per question. Structure the questions as follows:
+
+**Question 1 — Mode** (pick the 4 most relevant based on context, users can always pick "Other"):
+- If the user has files open: Standard Roast, Panel Roast, Diff Roast, Batter Battle
+- If no clear context: Standard Roast, Panel Roast, Roast Challenge, Roast-a-thon
+- Always include in the question text: "More modes available via Other: Skill Roast, Eval Mode, Diff Roast, Batter Battle, Roast-a-thon, Roast Challenge"
+
+**Question 2 — Personality** (always include Custom as one of the 4):
+- 🧑‍🍳 Chef (default), plus 2 popular built-ins (rotate which ones), plus 🎨 Custom
+- If the user has saved custom personalities in `.blunt-cake/custom-personalities/`, list those instead of built-ins
+- Always include in the question text: "All personalities: Chef, Disappointed Grandma, Passive-Aggressive PR Reviewer, Simon Cowell, Snoop Dogg, Pirate, or create your own with Custom"
+
 ---
 
 ## Language Packs
