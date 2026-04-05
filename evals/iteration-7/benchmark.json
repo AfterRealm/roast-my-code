@@ -1,0 +1,560 @@
+{
+  "timestamp": "2026-04-05T05:34:23.210568Z",
+  "iteration": 7,
+  "test_cases": 9,
+  "avg_pass_rate": 0.86,
+  "avg_accuracy": 4.4,
+  "avg_humor": 4.6,
+  "avg_actionability": 4.6,
+  "avg_format_compliance": 4.6,
+  "per_case": [
+    {
+      "id": 1,
+      "name": "security-nightmare",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the hardcoded JWT secret as a CRITICAL security issue",
+          "passed": true,
+          "evidence": "Finding titled 'SECURITY — Hardcoded JWT Secret' with Severity: CRITICAL, quotes line 5 SECRET = \"super_secret_key_123\""
+        },
+        {
+          "assertion": "Calls out the admin escalation via query parameter (req.query.admin)",
+          "passed": true,
+          "evidence": "Finding titled 'SECURITY — Admin Privilege Escalation via Query Parameter' identifies req.query.admin === 'true' as a complete authorization bypass, Severity: CRITICAL"
+        },
+        {
+          "assertion": "Mentions localStorage as insecure for token storage",
+          "passed": true,
+          "evidence": "Finding titled 'SECURITY — localStorage Token Storage Recommendation' states 'localStorage is accessible to any JavaScript on the page, making it trivially exploitable via XSS', Severity: HIGH"
+        },
+        {
+          "assertion": "Notes the lack of rate limiting on login",
+          "passed": true,
+          "evidence": "Finding titled 'PERFORMANCE — No Rate Limiting on Login' states 'login() has no attempt throttling, account lockout, or rate limiting', Severity: HIGH"
+        },
+        {
+          "assertion": "Notes the JWT has no expiration",
+          "passed": true,
+          "evidence": "Finding titled 'SECURITY — JWT Tokens Never Expire' notes 'jwt.sign() is called without an expiresIn option', Severity: CRITICAL"
+        },
+        {
+          "assertion": "Provides a fix for each finding",
+          "passed": true,
+          "evidence": "All 11 findings include a Fix section with concrete code snippets or actionable guidance (e.g., environment variable for secret, expiresIn for JWT, httpOnly cookie, express-rate-limit, etc.)"
+        },
+        {
+          "assertion": "Score is between 0 and 5 (this code has critical issues)",
+          "passed": true,
+          "evidence": "Score: 2/10 — labeled 'Dumpster Fire'. While the scale is /10 not /5, the score of 2 reflects critical issues appropriately and is effectively in the low range"
+        },
+        {
+          "assertion": "Output follows the specified format with Verdict, Findings, Scoreboard, Final Words",
+          "passed": true,
+          "evidence": "Output has clear sections: 'The Verdict', 'Findings' (with individual issue blocks), 'The Scoreboard' (table format), and 'Final Words'"
+        },
+        {
+          "assertion": "Roasts are funny but not mean-spirited",
+          "passed": true,
+          "evidence": "Humor throughout: 'welcome mat with HACK ME embroidered on it', 'These tokens live forever. Like vampires, except vampires are at least cool', 'That's not a database, that's a daydream' — all target the code, not the developer personally"
+        },
+        {
+          "assertion": "Acknowledges the bcrypt usage as something done right",
+          "passed": true,
+          "evidence": "Final Words: 'you used bcrypt instead of rolling your own hash... that's a genuine security best practice, and I respect it'. Also in Verdict: 'The bcrypt usage gave me a flicker of hope'"
+        }
+      ],
+      "bare_output_len": 2802,
+      "skill_output_len": 8924
+    },
+    {
+      "id": 2,
+      "name": "decent-code",
+      "assertions_total": 8,
+      "assertions_passed": 7,
+      "pass_rate": 0.88,
+      "quality": {
+        "accuracy": 4,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the SQL LIKE injection risk in search_todos",
+          "passed": false,
+          "evidence": "The output mentions search_todos in the pagination finding ('Lines 34-43 (list_todos) and 90-96 (search_todos) return every matching row with no LIMIT') but never identifies the SQL LIKE injection risk specifically. No finding calls out unsafe string interpolation or LIKE pattern injection in the search endpoint."
+        },
+        {
+          "assertion": "Calls out debug=True in production",
+          "passed": true,
+          "evidence": "First finding: '🔓 SECURITY — Debug mode is a remote code execution button' — 'You left `debug=True` in the run config. Congratulations, you've given every attacker on the network a Python REPL.' with fix using environment variable."
+        },
+        {
+          "assertion": "Notes the lack of authentication",
+          "passed": true,
+          "evidence": "Second finding: '🔓 SECURITY — Zero authentication on every endpoint' — 'No auth on any route. No API keys, no tokens, no sessions. Every endpoint — including DELETE and PUT — is wide open.' Includes API key middleware fix."
+        },
+        {
+          "assertion": "Acknowledges good patterns (WAL mode, proper error handling, RESTful design)",
+          "passed": true,
+          "evidence": "The Verdict says: 'the bones are here: parameterized queries, WAL mode, reasonable CRUD structure.' Final Words: 'parameterized queries, WAL mode, and a clean REST structure show you know what you're doing at a basic level. The code is readable, the routes are logical.'"
+        },
+        {
+          "assertion": "Score is between 5 and 8 (decent code with real but non-critical issues)",
+          "passed": true,
+          "evidence": "Score: 5/10 — 🥩 Rare. This falls within the 5-8 range."
+        },
+        {
+          "assertion": "Output follows the specified format",
+          "passed": true,
+          "evidence": "Output includes all expected sections: title with '# 🔥 ROAST MY CODE', 'The Verdict' with score, 'Findings' with severity/fix per item, 'The Scoreboard' table with categories and severity, 'Final Words' summary, and 'Auto-Fix Available' prompt."
+        },
+        {
+          "assertion": "Does not manufacture fake critical issues to be dramatic",
+          "passed": true,
+          "evidence": "All findings are plausible real issues: debug=True RCE is a known Flask vulnerability, missing auth is observable, delete-without-existence-check is a real logic bug, no pagination is real, priority sort order is a genuine string-sorting issue, deprecated utcnow() is real, connection leaks without context managers are real, and last_insert_rowid race condition is acknowledged as unlikely in practice ('SQLite's GIL and connection-level locking make this unlikely to cause issues in practice'). No fabricated critical issues."
+        },
+        {
+          "assertion": "Provides fixes for each finding",
+          "passed": true,
+          "evidence": "All 8 findings include a **Fix:** section with concrete code snippets: env-based debug toggle, API key middleware, rowcount check for delete, LIMIT/OFFSET pagination, CASE expression for priority sorting, timezone-aware datetime, context manager for connections, and cursor.lastrowid for insert ID."
+        }
+      ],
+      "bare_output_len": 2754,
+      "skill_output_len": 7751
+    },
+    {
+      "id": 3,
+      "name": "spaghetti-monster",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the god function (proc does everything)",
+          "passed": true,
+          "evidence": "\"proc() (lines 10-122) is a 112-line monolith doing 6+ completely different things based on a mode string\" and \"You built a 130-line proc() that loads, saves, transforms, analyzes, batches, pipelines, AND handles its own retry logic\""
+        },
+        {
+          "assertion": "Calls out the global mutable state (data, cache, log, errs)",
+          "passed": true,
+          "evidence": "\"Lines 4-7 — data, cache, log, and errs are module-level mutable globals shared across every call. No thread safety. No isolation.\" under Architecture finding"
+        },
+        {
+          "assertion": "Notes the recursive retry pattern as dangerous (potential stack overflow)",
+          "passed": true,
+          "evidence": "\"Lines 37-39 and 120-122 — the general exception handler retries by recursively calling proc(). If the exception keeps recurring... Deep enough nesting = RecursionError.\" Severity marked HIGH."
+        },
+        {
+          "assertion": "Mentions the excessive parameter count",
+          "passed": true,
+          "evidence": "\"God function with 8 parameters and 6 modes\" in Style Crimes, and \"the unused parameters collecting dust like forgotten spices\" in the verdict"
+        },
+        {
+          "assertion": "Identifies the string-based mode dispatch as unmaintainable",
+          "passed": true,
+          "evidence": "\"You pass mode as a string, op hidden inside flags, and the meaning of x changes depending on which dimension you're operating in. This is unreadable, untestable, and unmaintainable.\""
+        },
+        {
+          "assertion": "Score is between 0 and 4 (this is genuinely bad code)",
+          "passed": true,
+          "evidence": "\"Score: 3/10 — 🗑️ Dumpster Fire\" — 3 out of 10 falls within the 0-4 range"
+        },
+        {
+          "assertion": "Output follows the specified format with all sections",
+          "passed": true,
+          "evidence": "Contains all expected sections: The Verdict, Findings (with multiple categorized issues), The Scoreboard table, Final Words, and Auto-Fix Available prompt"
+        },
+        {
+          "assertion": "Roasts are creative and funny, not generic",
+          "passed": true,
+          "evidence": "Multiple creative roasts: \"This isn't a function, it's a junk drawer with a pulse\", \"You're knocking on a door that doesn't exist, waiting a second, and knocking again. Three times. That's not denial logic, that's denial.\", \"did you lose your vowel privileges?\", \"stop catching exceptions like you're playing Pokémon\""
+        },
+        {
+          "assertion": "Suggests breaking proc() into separate functions as the primary fix",
+          "passed": true,
+          "evidence": "\"Split into separate functions: load_file(), save_file(), transform_data(), analyze_data(), run_batch(), run_pipeline(). Each one gets only the parameters it needs.\" Also in Final Words: \"Split this into a proper class with dedicated methods\""
+        },
+        {
+          "assertion": "The Final Words section exists and delivers a memorable closing roast",
+          "passed": true,
+          "evidence": "Final Words section exists with memorable closing: \"you've got the ingredients — now stop serving them raw\" and \"stop catching exceptions like you're playing Pokémon\""
+        }
+      ],
+      "bare_output_len": 4340,
+      "skill_output_len": 7966
+    },
+    {
+      "id": 4,
+      "name": "panel-roast-security",
+      "assertions_total": 8,
+      "assertions_passed": 0,
+      "pass_rate": 0.0,
+      "quality": {
+        "accuracy": 1,
+        "humor": 1,
+        "actionability": 1,
+        "format_compliance": 1
+      },
+      "assertion_details": [
+        {
+          "assertion": "Output includes a Panel Notes table with all 4 agents listed",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no content was produced, so no Panel Notes table exists."
+        },
+        {
+          "assertion": "At least one finding is marked as cross-confirmed (found by multiple agents)",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no findings of any kind were produced."
+        },
+        {
+          "assertion": "Security Auditor section shows findings in the Panel Notes",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no Security Auditor section exists."
+        },
+        {
+          "assertion": "Identifies the hardcoded JWT secret",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no security findings were produced."
+        },
+        {
+          "assertion": "Identifies the admin escalation via query parameter",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no security findings were produced."
+        },
+        {
+          "assertion": "Total finding count is equal to or greater than the standard roast",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — finding count is 0, which cannot meet or exceed any standard roast."
+        },
+        {
+          "assertion": "Output follows the format with Verdict, Findings, Panel Notes, Final Words",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — none of the required sections are present."
+        },
+        {
+          "assertion": "Score is between 0 and 5",
+          "passed": false,
+          "evidence": "Output is [TIMEOUT] — no score was produced."
+        }
+      ],
+      "bare_output_len": 2997,
+      "skill_output_len": 9
+    },
+    {
+      "id": 5,
+      "name": "skill-roast-weak",
+      "assertions_total": 9,
+      "assertions_passed": 9,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the trigger as too vague ('When the user asks' matches almost anything)",
+          "passed": true,
+          "evidence": "\"'When the user asks' is not a trigger — it's a tautology. Every skill fires 'when the user asks.' A trigger needs to define WHAT the user says that activates this skill vs. any other.\""
+        },
+        {
+          "assertion": "Calls out the lack of a defined output format or template",
+          "passed": true,
+          "evidence": "Dedicated section '📐 OUTPUT FORMAT' states: \"'Write a summary' is not a format\" and \"This is completely unstructured. Will the output have headers? Severity levels? A score?\" with a concrete template suggestion."
+        },
+        {
+          "assertion": "Notes the missing review process or workflow steps",
+          "passed": true,
+          "evidence": "Dedicated section '🔄 PROCESS' states: \"There is no defined workflow. Should the model read all the code first or start commenting line by line? Should it categorize findings? Prioritize them?\""
+        },
+        {
+          "assertion": "Criticizes the rules as too generic ('Be nice' is not actionable)",
+          "passed": true,
+          "evidence": "Section '⚖️ RULES' states: \"'Be nice. Don't be too harsh. Keep it short.' These are personality preferences, not operational rules.\" and the section title includes \"Three rules, all vibes.\""
+        },
+        {
+          "assertion": "Notes poor eval-readiness (you can't write assertions for undefined output)",
+          "passed": true,
+          "evidence": "Dedicated section '📊 EVAL-READINESS' states: \"There is no way to write meaningful assertions for this skill's output. Does 'a summary' pass?... You can't evaluate what you can't define. Every assertion would be subjective, which means every eval would be meaningless.\""
+        },
+        {
+          "assertion": "Score is between 1 and 4 (this is a napkin sketch, not a production skill)",
+          "passed": true,
+          "evidence": "\"Score: 2/10 — 🗒️ Napkin sketch\" — score of 2 falls within the 1-4 range."
+        },
+        {
+          "assertion": "Output uses the Skill Roast format with skill-specific categories in the Scoreboard",
+          "passed": true,
+          "evidence": "Output follows the Skill Roast format with title '🔥 ROAST MY SKILL', The Verdict, Findings sections, a Scoreboard table, and Final Words."
+        },
+        {
+          "assertion": "Suggestions are constructive and specific enough to actually improve the skill",
+          "passed": true,
+          "evidence": "Every finding includes a concrete 'Suggestion' with actual code/markdown examples — e.g., trigger conditions with TRIGGER/DO NOT TRIGGER, numbered process steps, output format template with headers, specific rules like 'Every finding must reference a specific line.'"
+        },
+        {
+          "assertion": "The Scoreboard uses skill categories (Trigger, Instructions, Edge Cases, etc.) not code categories",
+          "passed": true,
+          "evidence": "Scoreboard categories are: Trigger, Instructions, Edge Cases, Output Format, Process, Rules, Creativity, Eval-Readiness — all skill-specific categories, not code categories like Security/Performance/Style."
+        }
+      ],
+      "bare_output_len": 2686,
+      "skill_output_len": 8869
+    },
+    {
+      "id": 6,
+      "name": "diff-roast-sql-injection",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Identifies the searchUsers SQL injection — the diff REMOVED parameterized queries and replaced with string interpolation",
+          "passed": true,
+          "evidence": "\"The original `searchUsers` safely used `$1` with a parameter array: `pool.query('...ILIKE $1', [`%${query}%`])`. The new version directly interpolates the user-supplied `query` into the SQL string\""
+        },
+        {
+          "assertion": "Calls out the sortBy parameter as an ORDER BY injection vector",
+          "passed": true,
+          "evidence": "\"`sortBy` is concatenated directly into the SQL string with zero validation. An attacker passing `sortBy = \"id; DROP TABLE users --\"` gets arbitrary SQL execution. Column names can't be parameterized with `$1`, so you need an allowlist.\""
+        },
+        {
+          "assertion": "Identifies the bulkDelete SQL injection via unsanitized ids.join",
+          "passed": true,
+          "evidence": "\"New function `bulkDelete` takes an `ids` array and joins it directly into the SQL string. No type checking, no parameterization. If `ids` contains `\"1); DROP TABLE users; --\"`, congratulations — you've been pwned.\""
+        },
+        {
+          "assertion": "Notes the getUser fields parameter allows column name injection",
+          "passed": true,
+          "evidence": "\"`fields.join(', ')` is interpolated directly into the query. A caller passing `fields = [\"id FROM users; DROP TABLE users; --\"]` gets full injection. The original `SELECT *` was actually safer.\""
+        },
+        {
+          "assertion": "Recognizes this as a REGRESSION — the old code was safer than the new code",
+          "passed": true,
+          "evidence": "\"Someone took a perfectly parameterized PostgreSQL API and performed *elective surgery* to replace every safe query with hand-stitched string concatenation\" and \"You had *working, safe, parameterized queries*... And you *rewrote them* to use string concatenation. That's like replacing your seatbelt with a pool noodle.\""
+        },
+        {
+          "assertion": "Score is between 0 and 4 (these changes introduce critical security vulnerabilities)",
+          "passed": true,
+          "evidence": "\"Score: 1/10 — ☠️ Health Violation\" — 1 is between 0 and 4."
+        },
+        {
+          "assertion": "Output follows a diff-specific format (mentions files changed, additions/deletions)",
+          "passed": true,
+          "evidence": "\"1 file changed, ~25 additions, ~6 deletions\" in The Changelist section, and \"[File: api/users.js] — +25/-6 lines\" headers, plus a Diff Scoreboard table."
+        },
+        {
+          "assertion": "Provides fixes that restore parameterized queries",
+          "passed": true,
+          "evidence": "All four critical SQL injection findings include fix code blocks that restore parameterized queries using `$1`, `$2`, etc. with parameter arrays, e.g. `pool.query(sql, [`%${query}%`])` and `pool.query(`DELETE FROM users WHERE id IN (${placeholders})`, ids.map(Number)...)`"
+        },
+        {
+          "assertion": "Does NOT blame pre-existing code — focuses on what the diff changed",
+          "passed": true,
+          "evidence": "Each finding uses \"What changed:\" sections that contrast the old safe code with the new unsafe code. The review explicitly praises the old code: \"You had *working, safe, parameterized queries*. The kind of queries that make security auditors smile.\" No blame is directed at pre-existing code."
+        },
+        {
+          "assertion": "Offers Auto-Fix after the roast",
+          "passed": true,
+          "evidence": "\"🔧 **Auto-Fix Available**\nI found 9 fixable issues. Want me to apply the fixes?\n- **All** — Apply all fixes\n- **Critical/High only** — Just the important stuff\n- **Pick** — I'll list them, you choose\n- **Nah** — Just the roast, thanks\""
+        }
+      ],
+      "bare_output_len": 2734,
+      "skill_output_len": 7936
+    },
+    {
+      "id": 7,
+      "name": "batter-battle-cache",
+      "assertions_total": 10,
+      "assertions_passed": 10,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Declares cache_v2 as the winner",
+          "passed": true,
+          "evidence": "\"🏆 THE WINNER: cache_v2.py\" and \"V2 takes it 4 rounds to 1\""
+        },
+        {
+          "assertion": "Notes that cache_v1 shadows the builtin 'set' function",
+          "passed": true,
+          "evidence": "\"V1 named a function `set`. **The Python builtin `set`.**\" and \"`set` shadows the Python builtin (line 24)\""
+        },
+        {
+          "assertion": "Identifies cache_v1's lack of max size as a memory leak risk",
+          "passed": true,
+          "evidence": "\"V1 has **zero bounds on memory**. Every `set()` call grows the dict forever until you manually call `cleanup()`. In any shared environment, that's a DoS vector wearing a name tag that says 'HELLO, I EAT RAM.'\""
+        },
+        {
+          "assertion": "Credits cache_v2 for LRU eviction via OrderedDict",
+          "passed": true,
+          "evidence": "\"V2's `OrderedDict` gives O(1) LRU operations, `move_to_end` on access, and `popitem(last=False)` for eviction.\""
+        },
+        {
+          "assertion": "Credits cache_v2 for hit/miss tracking and hit_rate stats",
+          "passed": true,
+          "evidence": "\"hit tracking\" mentioned in winner summary and \"Hit/miss tracking — you can't optimize what you can't measure\" in What the Loser Should Steal"
+        },
+        {
+          "assertion": "Notes cache_v2's get_or_set as a useful pattern v1 lacks",
+          "passed": true,
+          "evidence": "cache_v2 is described as having \"a `get_or_set` convenience method\" in the intro, and the race condition discussion implies it's a useful feature V1 simply doesn't have. The loser-should-steal section does not explicitly call out get_or_set, but the output clearly frames it as a V2 advantage."
+        },
+        {
+          "assertion": "Output includes round-by-round comparison across categories",
+          "passed": true,
+          "evidence": "\"## Round-by-Round\" section with 5 rounds: Bugs, Security, Performance, Style & Readability, Architecture"
+        },
+        {
+          "assertion": "Output includes a scorecard table with per-category scores",
+          "passed": true,
+          "evidence": "\"## The Scorecard\" table with columns for Category, cache_v1.py scores, cache_v2.py scores, and Round Winner, including per-category numeric scores like 7/10, 5/10, etc."
+        },
+        {
+          "assertion": "Identifies at least one thing cache_v1 does better or simpler than cache_v2",
+          "passed": true,
+          "evidence": "Round 1 (Bugs) is won by cache_v1, and the summary notes \"the one round it lost was self-inflicted\" and \"The one thing V1 did better? It kept things simple enough to avoid the `get_or_set` race condition.\" Also V1 is credited with having docstrings that V2 lacks."
+        },
+        {
+          "assertion": "Includes a 'What the Loser Should Steal' section with actionable advice",
+          "passed": true,
+          "evidence": "\"## What the Loser Should Steal\" section with 3 numbered actionable items: class-based design, max size + LRU eviction, and hit/miss tracking"
+        }
+      ],
+      "bare_output_len": 4088,
+      "skill_output_len": 5906
+    },
+    {
+      "id": 8,
+      "name": "language-pack-snoop",
+      "assertions_total": 8,
+      "assertions_passed": 7,
+      "pass_rate": 0.88,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Roast lines use Snoop Dogg voice — slang, laid-back delivery, hip-hop references",
+          "passed": true,
+          "evidence": "Consistent Snoop Dogg voice throughout: \"fo shizzle\", \"nephew\", \"cuz\", \"homie\", \"lowrider\", \"rolling a blunt\", \"Uncle Snoop will be waitin'\", \"like smoke in the wind\", \"stash in a glass box\". Uses laid-back delivery and hip-hop references consistently."
+        },
+        {
+          "assertion": "Does NOT use chef/kitchen metaphors (that's the default personality)",
+          "passed": false,
+          "evidence": "Contains kitchen/food metaphors: \"gas station burrito\", \"knowing how to season the chicken don't matter when you left the kitchen door open\". The Final Words section explicitly uses chef/kitchen language which bleeds into the default personality's domain."
+        },
+        {
+          "assertion": "Still identifies the hardcoded JWT secret as a CRITICAL issue",
+          "passed": true,
+          "evidence": "Finding #1: '🔓 SECURITY — Hardcoded JWT Secret' with 'Severity: CRITICAL' and correct identification of line 5 with the hardcoded secret string."
+        },
+        {
+          "assertion": "Still identifies the admin escalation via query parameter",
+          "passed": true,
+          "evidence": "Finding #2: '🔓 SECURITY — Admin Privilege Escalation via Query Parameter' identifies lines 40-42 and the `req.query.admin === 'true'` check, rated CRITICAL."
+        },
+        {
+          "assertion": "Still provides concrete fixes for each finding",
+          "passed": true,
+          "evidence": "All 10 findings include a **Fix:** section with concrete code snippets — environment variable for JWT secret, role-based admin check, expiresIn for tokens, httpOnly cookies, input validation, Bearer parsing, rate limiting, database replacement, existence check, and storage removal."
+        },
+        {
+          "assertion": "Technical severity ratings are accurate (not inflated or deflated for comedy)",
+          "passed": true,
+          "evidence": "Hardcoded secret: CRITICAL (correct), Admin escalation: CRITICAL (correct), No expiry: HIGH (correct), localStorage XSS: HIGH (correct), No input validation: HIGH (reasonable), No Bearer parsing: MEDIUM (correct), No rate limiting: MEDIUM (correct), In-memory store: HIGH (correct), No existence check: LOW (correct), Dead code storage hint: NITPICK (correct). No inflation for comedic effect."
+        },
+        {
+          "assertion": "Output follows the standard format (Verdict, Findings, Scoreboard, Final Words)",
+          "passed": true,
+          "evidence": "Output contains all four required sections: '## The Verdict' (with score), '## Findings' (10 detailed findings), '## The Scoreboard' (category table), '## Final Words' (summary and advice). Also includes Auto-Fix prompt."
+        },
+        {
+          "assertion": "The personality is consistent throughout — not just the intro",
+          "passed": true,
+          "evidence": "Snoop voice persists across all sections: Verdict ('fo shizzle', 'nephew'), every finding quote uses character voice ('Bruh. BRUH.', 'cuz', 'homie', 'nephew'), and Final Words maintains it ('Uncle Snoop will be waitin'', 'fo real'). The personality never drops into neutral technical voice."
+        }
+      ],
+      "bare_output_len": 3045,
+      "skill_output_len": 8947
+    },
+    {
+      "id": 9,
+      "name": "auto-fix-offer",
+      "assertions_total": 6,
+      "assertions_passed": 6,
+      "pass_rate": 1.0,
+      "quality": {
+        "accuracy": 5,
+        "humor": 5,
+        "actionability": 5,
+        "format_compliance": 5
+      },
+      "assertion_details": [
+        {
+          "assertion": "Output includes the Auto-Fix offer section after the roast",
+          "passed": true,
+          "evidence": "The output ends with a '🔧 **Auto-Fix Available**' section appearing after the full roast content."
+        },
+        {
+          "assertion": "Auto-Fix section mentions the number of fixable issues found",
+          "passed": true,
+          "evidence": "\"I found 9 fixable issues. Want me to apply the fixes?\""
+        },
+        {
+          "assertion": "Auto-Fix section includes the options: All, Critical/High only, Pick, Nah",
+          "passed": true,
+          "evidence": "All four options are listed: \"**All** — Apply all fixes\", \"**Critical/High only** — Just the important stuff\", \"**Pick** — I'll list them, you choose\", \"**Nah** — Just the roast, thanks\""
+        },
+        {
+          "assertion": "The Auto-Fix offer appears AFTER the Final Words section, not before",
+          "passed": true,
+          "evidence": "The 'Final Words' section with its closing commentary appears first, followed by a horizontal rule, then the '🔧 **Auto-Fix Available**' section at the very end."
+        },
+        {
+          "assertion": "The roast itself is complete and valid before the Auto-Fix offer",
+          "passed": true,
+          "evidence": "The roast includes all required sections: The Verdict with score (2/10), 9 detailed Findings with severity/fix, The Scoreboard table, and Final Words — all complete before the Auto-Fix section."
+        },
+        {
+          "assertion": "The wrench emoji (🔧) appears in the Auto-Fix section",
+          "passed": true,
+          "evidence": "The Auto-Fix section opens with: \"🔧 **Auto-Fix Available**\""
+        }
+      ],
+      "bare_output_len": 3612,
+      "skill_output_len": 7867
+    }
+  ]
+}

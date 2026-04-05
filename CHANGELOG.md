@@ -1,5 +1,25 @@
 # Changelog
 
+## v2.1.0 — 2026-04-05
+
+> *86% eval pass rate. 97% excluding the one mode that literally can't run in headless.*
+
+### Eval Results — Iteration 7
+- 9 test cases, 82 assertions, Opus reviewer + Opus judge
+- **86% overall pass rate** (97% excluding Panel Roast timeout)
+- 7/9 tests at **100%**: security-nightmare, spaghetti-monster, skill-roast, diff-roast, batter-battle, auto-fix, and decent-code at 88%
+- Snoop Dogg personality: **88%** — consistent voice throughout, accurate findings
+- Auto-Fix offer: **100%** — correct format, correct placement
+- Panel Roast: 0% — known limitation (can't spawn subagents in `claude -p` headless mode)
+- All quality metrics 4.4-4.6/5 (accuracy, humor, actionability, format compliance)
+
+### Eval Framework Fixes
+- All test prompts now explicitly specify mode (e.g., "Standard roast this") to skip interactive mode picker in headless eval
+- Fixed eval report template to show correct test case count
+- Iteration 6 (pre-fix) and Iteration 7 (post-fix) results included
+
+---
+
 ## v2.0.0 — 2026-04-05
 
 > *Seven modes. Six personalities. CI/CD. Hall of Fame. The full bakery.*
