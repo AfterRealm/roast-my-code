@@ -1,6 +1,9 @@
 # Changelog
 
-## v2.2.2 — 2026-04-09
+## v2.3.0 — 2026-04-09
+
+### Added
+- **Update checker** — SessionStart hook checks installed version against latest GitHub release and notifies if an update is available
 
 ### Fixed
 - GitHub Action PR comment footer now shows correct version (was stuck on v2.0)
