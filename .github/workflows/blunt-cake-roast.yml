@@ -98,7 +98,7 @@ jobs:
             echo "</details>"
             echo ""
             echo "---"
-            echo "*Roasted with [Blunt Cake](https://github.com/AfterRealm/blunt-cake) v2.0*"
+            echo "*Roasted with [Blunt Cake](https://github.com/AfterRealm/blunt-cake) v2.2.1*"
           } > /tmp/comment.md
 
           gh pr comment ${{ github.event.pull_request.number }} \
