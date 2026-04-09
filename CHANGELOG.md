@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.2.2 — 2026-04-09
+
+### Fixed
+- GitHub Action PR comment footer now shows correct version (was stuck on v2.0)
+
 ## v2.2.0 — 2026-04-05
 
 > *Eight modes. Create your own personality. Coding challenges with target scores. This thing has a curriculum now.*
