@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.3.1 — 2026-04-09
+
+### Added
+- YAML frontmatter (`name`, `description`) for Agent Skills spec compliance and cross-platform discoverability (skills.sh, etc.)
+
 ## v2.3.0 — 2026-04-09
 
 ### Added
