@@ -15,7 +15,10 @@ description: >
   writing new code, adding features, translating languages, running
   formatters/linters, writing tests, explaining how code works, or library
   recommendations.
-version: 2.4.0
+license: MIT
+metadata:
+  author: AfterRealm
+  version: "2.4.0"
 ---
 
 # Blunt Cake
